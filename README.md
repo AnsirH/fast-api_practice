@@ -17,15 +17,23 @@ pip install fastapi uvicorn sqlalchemy flask
 
     - model.py에 사용자 데이터 컬럼 클래스 정의
 
-5. 회원가입 라우터 구현
+5. 회원가입 router 구현
 
     - schemas.py에 회원가입용 정보 데이터 클래스 RegisterRequest 정의
 
-    - main.py에 회원가입 post 라우터 정의: register_user
+    - main.py에 회원가입 post router 정의: register_user
 
-6. 로그인 라우터 구현
+6. 로그인 router 구현
 
     - schemas.py에 로그인용 정보 데이터 클래스 UserCreate 정의
+
+    - main.py에 로그인 시 작동 router 정의
+
+7. 사용자 조회 router 구현
+
+    - schemas.py에 사용자 조회용 클래스 정의 UserResponse
+
+    - main.py에 사용자 조회 router 함수 정의: get_user
 
 # Fast API 실행 - main.py 가 있는 api 폴더에서 진행
 ```

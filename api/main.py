@@ -74,3 +74,12 @@ def login(user:UserCreate, db:Session=Depends(get_db)):
         raise HTTPException(status_code=400, detail="로그인 실패")
     return {"success": True, "message": "로그인 성공"}
 
+# 사용자의 고유 id로 user 테이블의 데이터 조회
+@app.get("/api/users/{user_id}", response_model=UserResponse)
+def get_user(user_id:int, db:Session=Depends(get_db)):
+    user = db.query(User). \
+        filter(User.id == user.id). \
+        first()
+    if not user:
+        raise HTTPException(status_code=404, detail="사용자를 찾을 수 없습니다.")
+    return user
