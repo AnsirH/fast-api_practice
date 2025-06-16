@@ -60,3 +60,17 @@ def register_user(user: RegisterRequest, db:Session=Depends(get_db)):
     db.commit()
     db.refresh(new_user) # DB에서 자동 생성된 id를 유저 인스턴스에 할당
     return {"success":True, "message": "회원가입 성공", "user_id": new_user.id}
+
+# 사용자 정보 UserCreate로 DB 조회
+@app.post("/api/login")
+def login(user:UserCreate, db:Session=Depends(get_db)):
+    # 사용자 테이블에서 입력한 이름과 패스워드가 있는지 조회
+    print(user)
+    found = db.query(user) \
+        .filter(User.username == user.username, User.password == user.password) \
+        .first()
+    
+    if not found:
+        raise HTTPException(status_code=400, detail="로그인 실패")
+    return {"success": True, "message": "로그인 성공"}
+

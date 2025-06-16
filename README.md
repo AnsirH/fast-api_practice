@@ -11,7 +11,21 @@ pip install fastapi uvicorn sqlalchemy flask
 
 - main, database, model, schemas ( .py )
 
-4. database,
+4. 데이터 베이스 정의 및 설정
+
+    - database.py에 데이터베이스 생성 FastAPI + sqlite 연동 환경 설정 코드 작성
+
+    - model.py에 사용자 데이터 컬럼 클래스 정의
+
+5. 회원가입 라우터 구현
+
+    - schemas.py에 회원가입용 정보 데이터 클래스 RegisterRequest 정의
+
+    - main.py에 회원가입 post 라우터 정의: register_user
+
+6. 로그인 라우터 구현
+
+    - schemas.py에 로그인용 정보 데이터 클래스 UserCreate 정의
 
 # Fast API 실행 - main.py 가 있는 api 폴더에서 진행
 ```
