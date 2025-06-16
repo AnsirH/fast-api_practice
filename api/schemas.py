@@ -34,3 +34,13 @@ class ProductOut(BaseModel):
     price: int
     class Config: # 객체로 리턴할 때
         from_attributes = True
+
+# 장바구니용 데이터 객체
+class CartItem(BaseModel):
+    user_id: int
+    product_id: int
+    quantity: int
+
+# 장바구니 
+class CartItemOut(BaseModel):
+    quantity: int

@@ -103,3 +103,28 @@ def create_product(product: ProductCreate):
     db.refresh(product)
     db.close()
     return {"success":True, "message":"상품 등록 완료", "product_id":product.id}
+
+# 장바구니 담기
+@app.post("/api/cart")
+def add_to_cart(item: CartItem):
+    db = SessionLocal()
+    cart = Cart(user_id=item.user_id, product_id=item.product_id, quantity=item.quantity)
+    db.add(cart)
+    db.commit()
+    db.refresh(cart)
+    db.close()
+    return {"success":True, "message":"장바구니에 담겼습니다.", "cart_id":cart.id}
+
+# 장바구니 조회  /api/cart?user_id=1  ?키=벨류&키=벨류  쿼리파라미터
+from fastapi import Query
+@app.get("/api/cart")
+def get_cart(user_id: int = Query(...), db: Session=Depends(get_db)):
+    items = db.query(Cart).filter(Cart.user_id == user_id).all()
+    return [
+        {
+        "id": item.id,
+        "product_id": item.product_id,
+        "quantity": item.quantity
+        }
+        for item in items
+    ]
