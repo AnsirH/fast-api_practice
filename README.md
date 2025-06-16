@@ -1,4 +1,4 @@
-# 진행 순서
+# 구현 순서
 
 1. 가상환경 생성
 
@@ -39,4 +39,9 @@ pip install fastapi uvicorn sqlalchemy flask
 ```
 cd api
 uvicorn main:app --reload
+```
+
+# API 테스트
+```
+
 ```

@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base # 세션, 모델 베�
 DATABASE_URL = "sqlite:///./database.db"
 
 # 현재 경로에 database.db 파일을 생성, 쓰레드 제한을 우회
-engine = create_engine(DATABASE_URL, connect_args={"check_smae_thread":False})
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread":False})
 # 세션을 생성하는 함수.
 # 요청할 때마다 이걸 통해서 세션을 만들어 사용
 SessionLocal = sessionmaker(bind=engine)
