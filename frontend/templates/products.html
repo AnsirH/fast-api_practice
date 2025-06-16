@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상품 목록</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" 
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" 
+    crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='js/config.js')}}"></script>
 </head>
 <body>
     <h2>상품 목록</h2>
@@ -14,7 +17,7 @@
 <script>
     $(document).ready(function() {
         $.ajax({
-            url: "http://localhost:8000/api/products",
+            url: `${API_BASE_URL}/products`,
             type: "get",
             success: function(products) {
                 const productlist = $("#productlist")
@@ -48,7 +51,7 @@
             const userid = 1
 
             $.ajax({
-                url: "http://localhost:8000/api/cart",
+                url: `${API_BASE_URL}/cart`,
                 type: "post",
                 contentType: "application/json",
                 data: JSON.stringify({
