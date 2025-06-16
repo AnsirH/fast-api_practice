@@ -83,3 +83,23 @@ def get_user(user_id:int, db:Session=Depends(get_db)):
     if not user:
         raise HTTPException(status_code=404, detail="사용자를 찾을 수 없습니다.")
     return user
+
+from typing import List
+# 전체 상품 조회
+@app.get("/api/products", response_model=List[ProductOut])
+def get_product():
+    db = SessionLocal()
+    products = db.query(Product).all()
+    db.close()
+    return products
+
+# 상품 등록
+@app.post("/api/products")
+def create_product(product: ProductCreate):
+    db = SessionLocal()
+    product = Product(name = product.name, price = product.price)
+    db.add(product)
+    db.commit()
+    db.refresh(product)
+    db.close()
+    return {"success":True, "message":"상품 등록 완료", "product_id":product.id}

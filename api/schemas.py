@@ -21,3 +21,16 @@ class UserResponse(BaseModel):
     # DB에서 가져온 객체를 API 응답으로 사용하기 위해서 정의
     class Config:
         from_attributes = True
+
+# 상품 등록 데이터 객체
+class ProductCreate(BaseModel):
+    name: str
+    price: int
+
+# 상품 조회용 데이터 객체
+class ProductOut(BaseModel):
+    id: int
+    name: str
+    price: int
+    class Config: # 객체로 리턴할 때
+        from_attributes = True

@@ -49,6 +49,21 @@ pip install fastapi uvicorn sqlalchemy flask
 
     - templates 폴더에 login.html, register.html 파일 생성 및 정의
 
+10. 상품 화면 구성
+
+    - API
+
+        - schemas.py에 상품 등록 및 조회용 데이터 객체 정의( ProductCreate, ProductOut )
+
+        - model.py에 상품 테이블 클래스 정의( Product )
+
+        - main.py에 상품 조회 get_product( get router ), 상품 등록 create_product( post router ) 정의
+
+    - frontend
+
+        -
+
+
 # Fast API 실행 - main.py 가 있는 api 폴더에서 진행
 ```
 cd api
