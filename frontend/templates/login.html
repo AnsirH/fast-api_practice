@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+        <script src="https://code.jquery.com/jquery-3.7.1.js" 
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" 
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <h2>로그인</h2>
+    <form id="loginform">
+        <input type="text" name="username" placeholder="이름" required>
+        <input type="password" name="password" placeholder="비밀번호" required>
+        <button type="submit">로그인</button>
+    </form>
+    <div>
+        <a href="/register">회원가입</a>
+    </div>
+    <div id="message"></div>
+</body>
+<script>
+    $(document).ready(function() {
+        $("#loginform").on('submit',
+            function(e) {
+                e.preventDefault();
+                const data = {
+                    username: $('input[name="username"]').val(),
+                    password: $('input[name="password"]').val()
+                };
+                $.ajax({
+                    url: "http://localhost:8000/api/login",
+                    type: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify(data),
+                    success: function(response) {
+                        if (response.success) {
+                            window.location.href = "/"
+                        }
+                    },
+                    erorr:function(e) {
+                        $("#message").text("로그인에 실패했습니다. 아이디와 비번을 확인해주세요.")
+                    }
+                })
+            }
+        )
+    })
+</script>
+</html>

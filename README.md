@@ -35,6 +35,20 @@ pip install fastapi uvicorn sqlalchemy flask
 
     - main.py에 사용자 조회 router 함수 정의: get_user
 
+8. frontend 폴더 생성
+
+    - app.py, jquerytest.html 파일 생성
+
+    - templates 폴더 생성
+
+9. 홈 화면 구성
+   
+    - templates 폴더에 index.html 생성 및 정의
+
+    - app.py 파일에 home, login, register router 정의
+
+    - templates 폴더에 login.html, register.html 파일 생성 및 정의
+
 # Fast API 실행 - main.py 가 있는 api 폴더에서 진행
 ```
 cd api
@@ -43,5 +57,6 @@ uvicorn main:app --reload
 
 # API 테스트
 ```
-
+http://localhost:8000/docs
+http://127.0.0.1:8000/docs
 ```
